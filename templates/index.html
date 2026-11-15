@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile Studio | Create Your Identity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">P</div>
+                <div>
+                    <h2>profile<span>studio.</span></h2>
+                    <p>YOUR DIGITAL IDENTITY</p>
+                </div>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-menu">
+                <p class="menu-heading">WORKSPACE</p>
+
+                <div class="menu-item active">
+                    <span>✦</span>
+                    <span>Profile Builder</span>
+                </div>
+
+                <div class="menu-item">
+                    <span>◈</span>
+                    <span>Live Preview</span>
+                </div>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-line"></div>
+                <p>DESIGN YOUR IDENTITY.</p>
+                <p class="sidebar-version">PROFILE STUDIO · V1.0</p>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">WORKSPACE / PROFILE BUILDER</p>
+                    <h2>Create your profile</h2>
+                </div>
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    EDITING MODE
+                </div>
+            </header>
+
+
+            <section class="welcome-section">
+                <div>
+                    <p class="section-label">MAKE YOUR FIRST IMPRESSION COUNT</p>
+                    <h1>Your identity.<br><span>Your story.</span></h1>
+                    <p class="welcome-description">
+                        Create a professional profile card that represents who you are.
+                    </p>
+                </div>
+
+                <div class="welcome-decoration">✳</div>
+            </section>
+
+
+            <!-- SPLIT SCREEN -->
+            <section class="builder-layout">
+
+
+                <!-- LEFT: EDITOR -->
+                <div class="editor-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="step-number">01</span>
+                            <h3>Personal information</h3>
+                        </div>
+
+                        <span class="required-label">ALL FIELDS REQUIRED</span>
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="field-group">
+                            <label for="name">FULL NAME</label>
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your full name"
+                                maxlength="60"
+                                required
+                            >
+                        </div>
+
+                        <div class="field-group">
+                            <label for="role">PROFESSIONAL TITLE</label>
+                            <input
+                                type="text"
+                                id="role"
+                                placeholder="e.g. Software Developer"
+                                maxlength="70"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="field-group">
+                            <label>PROFILE PHOTOGRAPH</label>
+
+                            <label for="imageFile" class="upload-area">
+                                <div class="upload-icon">↑</div>
+                                <div>
+                                    <h4>Upload your photograph</h4>
+                                    <p>Click to browse your device</p>
+                                    <span>PNG, JPG or WEBP · MAX 5 MB</span>
+                                </div>
+                            </label>
+
+                            <input
+                                type="file"
+                                id="imageFile"
+                                accept="image/png,image/jpeg,image/webp"
+                                hidden
+                                required
+                            >
+
+                            <p id="fileName" class="file-name">No photograph selected</p>
+                        </div>
+
+
+                        <div class="field-group">
+                            <div class="label-row">
+                                <label for="bio">ABOUT YOU</label>
+                                <span>YOUR STORY</span>
+                            </div>
+
+                            <textarea
+                                id="bio"
+                                rows="5"
+                                maxlength="300"
+                                placeholder="Tell people a little about yourself, your interests and your goals..."
+                                required
+                            ></textarea>
+                        </div>
+
+
+                        <div class="form-actions">
+                            <button type="reset" class="reset-button" id="resetBtn">
+                                Reset
+                            </button>
+
+                            <button type="submit" class="generate-button" id="generateBtn">
+                                Generate profile <span>→</span>
+                            </button>
+                        </div>
+
+                        <p id="message" class="message"></p>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- RIGHT: PREVIEW -->
+                <div class="preview-panel">
+
+                    <div class="panel-heading preview-title">
+                        <div>
+                            <span class="step-number">02</span>
+                            <h3>Live preview</h3>
+                        </div>
+
+                        <span class="live-badge">
+                            <span></span> LIVE
+                        </span>
+                    </div>
+
+
+                    <div class="preview-stage">
+
+                        <div class="profile-card" id="profileCard">
+
+                            <div class="profile-card-cover">
+                                <div class="cover-orb orb-one"></div>
+                                <div class="cover-orb orb-two"></div>
+
+                                <span class="cover-brand">PROFILE STUDIO</span>
+                                <span class="cover-symbol">✳</span>
+                            </div>
+
+
+                            <div class="profile-card-body">
+
+                                <div class="profile-avatar">
+                                    <div id="avatarPlaceholder" class="avatar-placeholder">
+                                        P
+                                    </div>
+
+                                    <img
+                                        src=""
+                                        id="profileImage"
+                                        alt="Profile photograph"
+                                        hidden
+                                    >
+                                </div>
+
+
+                                <div class="identity-details">
+                                    <p class="identity-label">INTRODUCING</p>
+
+                                    <h2 id="previewName">Your Name</h2>
+
+                                    <p id="previewRole">Your Professional Title</p>
+                                </div>
+
+
+                                <div class="card-separator"></div>
+
+
+                                <div class="about-section">
+                                    <p class="about-label">A LITTLE ABOUT ME</p>
+
+                                    <p id="previewBio">
+                                        Your story will appear here. Share your interests,
+                                        passions and ambitions with the world.
+                                    </p>
+                                </div>
+
+
+                                <div class="profile-card-footer">
+                                    <span>PERSONAL IDENTITY</span>
+                                    <span class="footer-star">✦</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-bottom">
+                        <div>
+                            <span class="preview-bottom-icon">✦</span>
+                            <p>Your identity, beautifully presented.</p>
+                        </div>
+
+                        <button id="downloadBtn" class="download-button" disabled>
+                            ↓ Download PNG
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <footer class="main-footer">
+                <span>PROFILE STUDIO</span>
+                <span>CREATE · EXPRESS · INSPIRE</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
